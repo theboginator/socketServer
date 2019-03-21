@@ -23,16 +23,16 @@ public class Client {
             PrintWriter output = new PrintWriter(uplink.getOutputStream(), true);
             BufferedReader input = new BufferedReader(new InputStreamReader(uplink.getInputStream()));
             do{
-                response = input.readLine();
-                System.out.println("\nMSG from Server: " +response);
-                System.out.print("Enter an instruction: ");
-                command = keyboard.nextLine();
-                command = command.trim();
-                output.println(command);
+                response = input.readLine(); //Get response from server
+                System.out.println("\nMSG from Server: " +response); //print msg from server
+                System.out.print("Enter an instruction: "); //prompt user for command
+                command = keyboard.nextLine(); //get user input
+                command = command.trim(); //trim user input
+                output.println(command); //send command to server via output over socket
 
-            } while (command != "quit");
+            } while (command != "quit"); //exit when command is quit
         }
-        catch (IOException e){
+        catch (IOException e){ //handle errors
             System.out.println(e);
         }
     }

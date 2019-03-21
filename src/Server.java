@@ -100,7 +100,7 @@ class ClientHandler extends Thread {
                 }
             }
             input.close();
-        } catch (IOException err) {
+        } catch (IOException err) { //Handle an error
 
         }
     }
