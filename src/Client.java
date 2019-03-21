@@ -1,3 +1,10 @@
+/*
+SocketServer Client Manager v1.1
+Creates a server communicator on port 2014 that connects to server.
+Once connected, server sets up a vector of Contacts for the client.
+Client may request "get" "add" or "remove" (or "quit")
+(c) 2019 Jacob Bogner
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
