@@ -19,9 +19,11 @@ public class Client {
         String command;
         String response;
         try {
+            System.out.println("Attempting to connect... ");
             Socket uplink = new Socket("localhost", port);
             PrintWriter output = new PrintWriter(uplink.getOutputStream(), true);
             BufferedReader input = new BufferedReader(new InputStreamReader(uplink.getInputStream()));
+            System.out.println("Connected, waiting for server... ");
             do{
                 response = input.readLine(); //Get response from server
                 System.out.println("\nMSG from Server: " +response); //print msg from server
@@ -30,7 +32,7 @@ public class Client {
                 command = command.trim(); //trim user input
                 output.println(command); //send command to server via output over socket
 
-            } while (command != "quit"); //exit when command is quit
+            } while (!command.equalsIgnoreCase("quit")); //exit when command is quit
         }
         catch (IOException e){ //handle errors
             System.out.println(e);

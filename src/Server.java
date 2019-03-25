@@ -1,5 +1,5 @@
 /*
-SocketServer Server Manager v1.1
+SocketServer Server Manager v1.12
 Creates a server listener on port 2014 that listens for clients to connect.
 Once a client connects, server sets up a vector of Contacts for the client.
 Client may request "get" "add" or "remove" (or "quit")
@@ -24,9 +24,10 @@ public class Server {
         boolean listening = true;
         try {
             serverListener = new ServerSocket(port);
+            System.out.println("Waiting for a connection...");
             while (listening) {
                 //Allow each client attempting to connect to start a new "handle connection" thread
-                new ClientHandler(serverListener.accept()).run();
+                new ClientHandler(serverListener.accept()).start();
             }
         } catch (Exception e) {
             System.out.println("FAIL: " + e.getMessage()); //Handle an error
@@ -58,11 +59,13 @@ class ClientHandler extends Thread {
             //Set up output stream
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             output.println("Checking output stream... OK"); //Print a test message to client
+            System.out.println("A new client is connected!");
             //Create a string to hold requests from the client
             String request = " ";
 
-            while ((request = input.readLine()) != "quit") { //Handle client requests as long as no "quit" is sent
+            while (!request.equalsIgnoreCase("quit")) { //Handle client requests as long as no "quit" is sent
                 boolean found = false;
+                request = input.readLine();
                 System.out.println("New Request: " + request); // Read one line and output it to server screen
                 String[] instruction = request.split(" "); //Split the request into a command and a parameter
 
