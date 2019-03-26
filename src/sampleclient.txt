@@ -1,0 +1,35 @@
+/*
+SOCKET SERVER SKELETON APPLICATION
+I PURPOSELY GAVE THIS BULLSHIT NAMES AND LEFT LOTS OF BLANKS THAT ARE EASY AS FUCK TO FILL
+I HOPE BY MAKING THIS BAREBONES AND PROFANE YOU WILL BE REQUIRED TO WRITE YOUR OWN SO YOUR CODE DOESN'T LOOK SAME TO MINE
+GOOD LUCK
+
+(c) 2019 Jacob Bogner
+ */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.*;
+
+public class Client {
+    public static void main (String []args){
+        //Declare an int port here!!!!!!
+        try {
+            Socket cocket = new Socket("localhost", port); //create socket using previously defined port!!!!
+            PrintWriter pulls_out = new PrintWriter(cocket.getOutputStream(), true); //Setup writer to write to port!!!!
+            BufferedReader fuck_me = new BufferedReader(new InputStreamReader(cocket.getInputStream())); //Setup reader to read from port!!!!!
+            //UNTIL THE USER SAYS "QUIT" DO THE FOLLOWING:
+                bullshit = fuck_me.readLine(); //Get response from server
+                //PRINT THE RESPONSE FROM SERVER IF ANY
+                //PROMPT USER FOR AN INSTRUCTION AND PARAMETERS
+                pulls_out.println(//WHATEVER USER INSTRUCTION WAS);
+        }
+        catch (IOException e){ //handle errors
+            System.out.println(e);
+        }
+    }
+
+
+}
