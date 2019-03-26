@@ -1,5 +1,5 @@
 /*
-SocketServer Server Manager v1.12
+SocketServer Server Manager v1.15
 Creates a server listener on port 2014 that listens for clients to connect.
 Once a client connects, server sets up a vector of Contacts for the client.
 Client may request "get" "add" or "remove" (or "quit")
@@ -80,6 +80,7 @@ class ClientHandler extends Thread {
                     }
                     if(!found){
                         output.println("400 Not Found"); //Return error if can't find name
+                        System.out.println("Couldn't find " +instruction[1]);
                     }
                 } else if (instruction[0].equalsIgnoreCase("remove")) {//Remove a contact from the directory
                     for (Contact c : directory) {
@@ -93,6 +94,7 @@ class ClientHandler extends Thread {
                     }
                     if (!found){
                         output.println("400 Not Found"); //Return error if can't find name
+                        System.out.println("Couldn't find " +instruction[1]);
                     }
                 } else if (instruction[0].equalsIgnoreCase("store")) {
                     directory.add(new Contact(instruction[1], instruction[2]));//Add the contact listed to the directory
